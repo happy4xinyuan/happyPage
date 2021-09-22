@@ -1,3 +1,32 @@
-.ant-layout-header, .ant-layout-sider , .ant-layout-footer{
+.ant-layout-header, .ant-layout-sider , .ant-layout-footer, .ant-layout-content{
   background-color:white;
+  height: 33.3vh;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100%;
+}
+
+
+.ant-input-group {
+  top: 40vh;
+  left: 50vw;
+  width: 50vw;
+  transform: translate(-50%,-50%);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    background: linear-gradient(20deg, rgb(253, 174, 216), #faecaf, #b1e0ff);
+    animation: hueRotate 1s infinite alternate;
+}
+
+@keyframes hueRotate {
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
