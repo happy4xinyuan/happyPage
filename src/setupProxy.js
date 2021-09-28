@@ -12,13 +12,13 @@ module.exports = function(app) {
   }));
 
 
-  app.use('/api2', 
-  createProxyMiddleware({
-  target: 'https://api.muxiaoguo.cn/api/',
-  changeOrigin: true,
-  pathRewrite: {
-   '^/api2': ''
-  }
+    app.use('/api2', 
+    createProxyMiddleware({
+    target: 'https://api.muxiaoguo.cn/api/',
+    changeOrigin: true,
+    pathRewrite: {
+    '^/api2': ''
+    }
     }));
 
     app.use('/api3', 

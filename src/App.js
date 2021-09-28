@@ -1,19 +1,22 @@
 import { Input } from 'antd';
+import {Quote} from './Quote'
+import {SwiperQuote} from './SwiperQuote'
 import './App.css'
-import TextFlow from './TextFlow';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 const { Search } = Input;
 
 
 
-const onSearch = value => console.log(value);
+const onSearch = value => {
+  window.location.assign('https://www.baidu.com/s?wd=' + value + '_blank');
+}
 
 function App() {
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
 
   const santinizeName = (text) => {
-      return text.replace(/你/, "李科琪");
+      return text.replace(/你/, "李科淇");
   }
 
   useEffect(() => {
@@ -21,33 +24,27 @@ function App() {
           const result1 = await axios.get(
           'api1/api.php',
         );
-        const result2 = await axios.get(
-          'api2/caihongpi',
-        );
-        const result3  = await axios.get(
-          'api3/chp.php',
-        )
-       //   const res = result1.data.indexof('频繁') > 0? result2.data.comment : result1.data;
-       const res1 = result1.data;
-       const res2 = result2.data.comment;
-       const res3 = result3.data;
-       const resDefault = '';
-        setData(santinizeName(res3));
+        const res1 = result1.data;
+        return santinizeName(res1);
       }
-     fetchData();
+      let i = 15;
+      while (i--){
+        setData(...data,fetchData());
+      }
   },[]); 
 
   return (
     <div className="App">
           {/* <TextFlow></TextFlow> */}
-          <Search
-            className="search"
-            placeholder={data}
-            allowClear
-            enterButton="Search"
-            size="large"
-            onSearch={onSearch}
-          />
+          {/* <SwiperQuote data={data}></SwiperQuote> */}
+            <Search
+              className="search"
+              placeholder={data?.[0]||''}
+              allowClear
+              enterButton="Search"
+              size="large"
+              onSearch={onSearch}
+            />
           {/* <Battery></Battery> */}
     </div>
   );
